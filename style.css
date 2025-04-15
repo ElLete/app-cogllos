@@ -139,3 +139,10 @@ input[type="number"] {
     display: block;
     opacity: 1;
 }
+
+/* ================== ANIMACIONES SUAVES ================== */
+
+button:active {
+    transform: scale(0.97);
+    transition: transform 0.1s;
+}
