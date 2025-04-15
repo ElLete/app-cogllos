@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>🍀 APP DE COGOLLOS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Si usas manifest, lo incluyes aquí -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Popup para mensajes (estilo toast, sin alert nativo) -->
+    <div id="popupMessage" class="popup-message"></div>
+    
+    <!-- Cabecera con título y emojis -->
+    <header class="header">
+        <h1>🍀 APP DE COGOLLOS</h1>
+    </header>
+    
+    <!-- Menú principal -->
+    <div id="menu" class="container">
+        <div class="nav-buttons">
+            <button onclick="mostrarSeccion('compra')">🛒  REGISTRAR COMPRA</button>
+            <button onclick="mostrarSeccion('venta')">💵  REGISTRAR VENTA</button>
+            <button onclick="mostrarSeccion('historial')">📊  HISTORIAL</button>
+        </div>
+    </div>
+    
+    <!-- Sección de Registro de Compra -->
+    <div id="seccion-compra" class="container seccion" style="display:none;">
+        <h2>🛒 REGISTRAR COMPRA</h2>
+        <label for="cogollosCompra">¿Cuántos cogollos compraste?</label>
+        <input type="number" id="cogollosCompra" min="1" placeholder="Ej: 100">
+        <label for="totalCompra">¿Cuánto pagaste en total (CLP)?</label>
+        <input type="number" id="totalCompra" min="1" placeholder="Ej: 100000">
+        <button onclick="registrarCompra()">➕  Calcular precio por cogollo</button>
+        <p id="resultadoCompra" class="resultado"></p>
+        <button class="volver" onclick="mostrarSeccion('menu')">↩  Volver al menú</button>
+    </div>
+    
+    <!-- Sección de Registro de Venta -->
+    <div id="seccion-venta" class="container seccion" style="display:none;">
+        <h2>💵 REGISTRAR VENTA</h2>
+        <label for="cogollosVenta">¿Cuántos cogollos vendiste?</label>
+        <input type="number" id="cogollosVenta" min="1" placeholder="Ej: 50">
+        <label for="totalVenta">¿Cuánto cobraste en total (CLP)?</label>
+        <input type="number" id="totalVenta" min="1" placeholder="Ej: 60000">
+        <button onclick="registrarVenta()">➕  Calcular ganancia</button>
+        <p id="resultadoVenta" class="resultado"></p>
+        <button class="volver" onclick="mostrarSeccion('menu')">↩  Volver al menú</button>
+    </div>
+    
+    <!-- Sección de Historial -->
+    <div id="seccion-historial" class="container seccion" style="display:none;">
+        <h2>📊 HISTORIAL</h2>
+        <h3>Compras</h3>
+        <div id="historialCompras" class="historial-largo"></div>
+        <h3>Ventas</h3>
+        <div id="historialVentas" class="historial-largo"></div>
+        <div id="resumen" class="resumen-final"></div>
+        <button onclick="borrarHistorial()">🗑  Borrar Historial</button>
+        <button class="volver" onclick="mostrarSeccion('menu')">↩  Volver al menú</button>
+    </div>
+    
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js');
+        }
+    </script>
+</body>
+</html>
